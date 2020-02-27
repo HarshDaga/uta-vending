@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last name</string>
+    <string name="email_address_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="phone_hint">Phone</string>
+    <string name="street_hint">Street</string>
+    <string name="city_hint">City</string>
+    <string name="state_hint">State</string>
+    <string name="zip_hint">Zip Code</string>
+    <string name="role_label">Role:</string>
+    <string name="user_radio_text">User</string>
+    <string name="operator_radio_text">Operator</string>
+    <string name="manager_radio_text">Manager</string>
+    <string name="register_button_text">Register</string>
+    <string name="email_login_hint">Email</string>
+    <string name="password_login_hint">Password</string>
+    <string name="login_button_text">LOGIN</string>
+    <string name="register_now_button_text">REGISTER NOW</string>
+    <string name="welcome_text">WELCOME!!!</string>
+    <string name="logout_button_text">LOGOUT</string>
+</resources>
