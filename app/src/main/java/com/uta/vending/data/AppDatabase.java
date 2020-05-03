@@ -150,6 +150,7 @@ public abstract class AppDatabase extends RoomDatabase
 			}
 	}
 
+	@SuppressWarnings("unused")
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	private void populateOrders()
 	{

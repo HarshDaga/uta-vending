@@ -17,5 +17,8 @@ public interface UserDao
 
 	@Query("SELECT * FROM users WHERE email = :email AND role = :role LIMIT 1")
 	Single<User> getUser(String email, int role);
+
+	@Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
+	Single<User> getUser(long userId);
 }
 

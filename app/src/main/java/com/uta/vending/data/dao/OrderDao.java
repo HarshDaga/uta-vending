@@ -1,6 +1,5 @@
 package com.uta.vending.data.dao;
 
-import androidx.lifecycle.*;
 import androidx.room.*;
 
 import com.uta.vending.data.entities.*;
@@ -25,6 +24,9 @@ public interface OrderDao
 	Flowable<List<Order>> getAll(long userId);
 
 	@Query("SELECT COUNT(*) FROM orders WHERE operator_id = :operatorId")
-	LiveData<Integer> getTxCount(long operatorId);
+	Single<Integer> getTxCount(long operatorId);
+
+	@Query("SELECT * FROM orders WHERE id = :orderId")
+	Single<Order> findOrder(long orderId);
 }
 
