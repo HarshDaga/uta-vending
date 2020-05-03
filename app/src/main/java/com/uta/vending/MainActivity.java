@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 	{
 		String email = emailText.getText().toString().trim();
 		appDb.userDao()
-			.find(email, Role.USER.getCode())
+			.getUser(email, Role.USER.getCode())
 			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(this::onUserFound, this::onUserLookupError);

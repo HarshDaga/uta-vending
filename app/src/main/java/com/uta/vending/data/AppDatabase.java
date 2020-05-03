@@ -2,19 +2,31 @@ package com.uta.vending.data;
 
 import android.annotation.*;
 import android.content.*;
+import android.os.*;
 import android.util.*;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.*;
 import androidx.room.*;
 import androidx.sqlite.db.*;
 
 import com.uta.vending.data.dao.*;
 import com.uta.vending.data.entities.*;
 
+import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-@Database(entities = {User.class, FoodItem.class, Vehicle.class, InventoryItem.class}, version = 2)
+@Database
+	(
+		entities =
+			{
+				User.class, FoodItem.class,
+				Vehicle.class, InventoryItem.class,
+				Order.class, Schedule.class
+			},
+		version = 8
+	)
 public abstract class AppDatabase extends RoomDatabase
 {
 	private static final String DB_NAME = "data.db";
@@ -42,6 +54,7 @@ public abstract class AppDatabase extends RoomDatabase
 			.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
 			.addCallback(new Callback()
 			{
+				@RequiresApi(api = Build.VERSION_CODES.O)
 				@Override
 				public void onCreate(@NonNull SupportSQLiteDatabase db)
 				{
@@ -60,6 +73,11 @@ public abstract class AppDatabase extends RoomDatabase
 
 	abstract public InventoryDao inventoryDao();
 
+	abstract public OrderDao orderDao();
+
+	abstract public ScheduleDao scheduleDao();
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	private void populate()
 	{
 		Log.d(AppDatabase.class.getName(), "Populating Database");
@@ -68,6 +86,8 @@ public abstract class AppDatabase extends RoomDatabase
 		populateFood();
 		populateVehicles();
 		populateInventory();
+//		populateOrders();
+		populateSchedule();
 	}
 
 	private void populateUsers()
@@ -78,6 +98,18 @@ public abstract class AppDatabase extends RoomDatabase
 			Role.USER);
 
 		userDao().insert(user).blockingAwait();
+
+		for (Role role : Role.values())
+			for (int i = 0; i < 5; i++)
+			{
+				user.firstName = role.toString() + (i + 1);
+				user.lastName = "Empty";
+				user.email = user.firstName + "@email.com";
+				user.role = role;
+				user.password = User.hash("123");
+
+				userDao().insert(user).blockingAwait();
+			}
 	}
 
 	private void populateFood()
@@ -116,5 +148,28 @@ public abstract class AppDatabase extends RoomDatabase
 					.insert(new InventoryItem(vehicle.id, item, 5))
 					.blockingAwait();
 			}
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private void populateOrders()
+	{
+		Order order = new Order(2, 7, LocalDateTime.now(), 1, "UTA");
+		List<FoodItem> foodItems = foodDao().getAll().blockingFirst();
+		order.addItem(new OrderItem(foodItems.get(0), 2));
+		order.addItem(new OrderItem(foodItems.get(1), 1));
+
+		orderDao().insert(order).blockingAwait();
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private void populateSchedule()
+	{
+		LocalDateTime today = LocalDateTime.now()
+			.withNano(0)
+			.withSecond(0)
+			.withMinute(0)
+			.withHour(0);
+		Schedule s = new Schedule(7, 1, "UTA", today.withHour(11), today.withHour(13));
+		scheduleDao().insert(s).blockingAwait();
 	}
 }

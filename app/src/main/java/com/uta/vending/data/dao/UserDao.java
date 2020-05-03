@@ -16,6 +16,6 @@ public interface UserDao
 	Completable update(User... user);
 
 	@Query("SELECT * FROM users WHERE email = :email AND role = :role LIMIT 1")
-	Single<User> find(String email, int role);
+	Single<User> getUser(String email, int role);
 }
 

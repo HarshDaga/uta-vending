@@ -14,7 +14,11 @@ import androidx.room.*;
 				parentColumns = "id",
 				childColumns = "food_id",
 				onDelete = ForeignKey.CASCADE)
-		}
+		},
+	indices = {
+		@Index(name = "inventory_vehicle_id_index", value = {"vehicle_id"}),
+		@Index(name = "inventory_food_id_index", value = {"food_id"})
+	}
 )
 public class InventoryItem
 {
