@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 		}
 
 		Toast.makeText(MainActivity.this, String.format("Welcome %s", user.firstName), Toast.LENGTH_LONG).show();
-		Intent afterLogin = new Intent(MainActivity.this, AfterLoginActivity.class);
+		Intent afterLogin = AfterLoginActivity.getNavigationIntent(this, user.id);
 		startActivity(afterLogin);
 	}
 

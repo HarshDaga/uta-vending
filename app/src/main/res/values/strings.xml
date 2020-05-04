@@ -1,3 +1,70 @@
 <resources>
     <string name="app_name">UTA Mobile Vending System</string>
+    <string name="title_activity_afterlogin_user">afterloginUser</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="first_name">First Name:</string>
+    <string name="email">Email:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="password">Password:</string>
+    <string name="phone">Phone:</string>
+    <string name="st_address">St Address:</string>
+    <string name="city">City:</string>
+    <string name="state">State:</string>
+    <string name="zip_code">Zip Code:</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="delete_profile">Delete Profile</string>
+
+    <string-array name="VehicleType">
+        <item>Food Truck</item>
+        <item>Cart</item>
+    </string-array>
+
+    <string-array name="LocationSp">
+        <item>None</item>
+        <item>Cooper &amp; UTA Blvd</item>
+        <item>W Nedderman &amp; Greek Row</item>
+        <item>S Davis &amp; W Mitchell</item>
+        <item>W Nedderman &amp; Greek Row</item>
+        <item>Cooper &amp; W Mitchell</item>
+        <item>S Oak &amp; UTA Blvd</item>
+        <item>Spaniolo &amp; W 1st</item>
+        <item>Spaniolo &amp; W Mitchell</item>
+        <item>S Center &amp; W Mitchell</item>
+    </string-array>
+
+    <string-array name="RoleSp">
+        <item>User</item>
+        <item>Operator</item>
+        <item>Manager</item>
+    </string-array>
+
+    <string-array name="VehicleNameSp">
+        <item>Truck1</item>
+        <item>Truck2</item>
+        <item>Truck3</item>
+    </string-array>
+
+    <string-array name="MVehicleNameSp">
+        <item>Cart2</item>
+        <item>Cart3</item>
+        <item>Truck1</item>
+    </string-array>
+
+    <string-array name="MVehicleNameSp2">
+        <item>Cart1</item>
+        <item>Cart4</item>
+        <item>Truck2</item>
+    </string-array>
+
 </resources>

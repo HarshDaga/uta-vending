@@ -9,8 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AfterLoginActivity"></activity>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ViewRevenue"/>
+        <activity android:name=".OrderDetails"/>
+        <activity android:name=".InvoiceScreen"/>
+        <activity android:name=".EditCart"/>
+        <activity android:name=".DeleteUser"/>
+        <activity android:name=".ViewOperatorDetails"/>
+        <activity android:name=".ViewOperator"/>
+        <activity android:name=".ViewVehicle"/>
+        <activity android:name=".ManagerHomescreen"/>
+        <activity android:name=".ProcessOrder"/>
+        <activity android:name=".ViewSchedule"/>
+        <activity android:name=".OperatorHomescreen"/>
+        <activity android:name=".ViewInventory"/>
+        <activity android:name=".SearchVehicle"/>
+        <activity android:name=".ViewProfile"/>
+        <activity android:name=".AfterLoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
