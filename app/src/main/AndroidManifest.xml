@@ -17,14 +17,14 @@
         <activity android:name=".ViewOperatorDetails"/>
         <activity android:name=".ViewOperator"/>
         <activity android:name=".ViewVehicle"/>
-        <activity android:name=".ManagerHomescreen"/>
+        <activity android:name=".ManagerHomeScreen" />
         <activity android:name=".ProcessOrder"/>
         <activity android:name=".ViewSchedule"/>
-        <activity android:name=".OperatorHomescreen"/>
+        <activity android:name=".OperatorHomeScreen" />
         <activity android:name=".ViewInventory"/>
         <activity android:name=".SearchVehicle"/>
         <activity android:name=".ViewProfile"/>
-        <activity android:name=".AfterLoginActivity"/>
+        <activity android:name=".UserHomeScreen" />
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>

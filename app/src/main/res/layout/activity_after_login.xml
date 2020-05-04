@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AfterLoginActivity">
+    tools:context=".UserHomeScreen">
 
     <Button
-        android:id="@+id/btnviewcart"
+        android:id="@+id/ViewCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Cart"
+        android:text="@string/view_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -22,7 +22,7 @@
         android:id="@+id/LogoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:id="@+id/ViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Profile"
+        android:text="@string/view_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,10 +41,10 @@
         app:layout_constraintVertical_bias="0.774" />
 
     <Button
-        android:id="@+id/btnvieworder"
+        android:id="@+id/ViewOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Orders"
+        android:text="@string/view_orders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -56,7 +56,7 @@
         android:id="@+id/SearchVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Vehicle"
+        android:text="@string/search_vehicle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

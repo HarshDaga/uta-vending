@@ -1,37 +1,21 @@
 package com.uta.vending.data;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
+import android.annotation.*;
+import android.content.*;
+import android.os.*;
+import android.util.*;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.annotation.*;
+import androidx.room.*;
+import androidx.sqlite.db.*;
 
-import com.uta.vending.data.dao.FoodDao;
-import com.uta.vending.data.dao.InventoryDao;
-import com.uta.vending.data.dao.OrderDao;
-import com.uta.vending.data.dao.ScheduleDao;
-import com.uta.vending.data.dao.UserDao;
-import com.uta.vending.data.dao.VehicleDao;
-import com.uta.vending.data.entities.FoodItem;
-import com.uta.vending.data.entities.InventoryItem;
-import com.uta.vending.data.entities.Order;
-import com.uta.vending.data.entities.OrderItem;
-import com.uta.vending.data.entities.Revenue;
-import com.uta.vending.data.entities.Role;
-import com.uta.vending.data.entities.Schedule;
-import com.uta.vending.data.entities.User;
-import com.uta.vending.data.entities.Vehicle;
+import com.uta.vending.data.dao.*;
+import com.uta.vending.data.entities.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import java.time.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 @Database
         (
@@ -103,7 +87,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private void populateUsers() {
         User user = new User("Harsh", "Daga",
                 "harsh@gmail.com", User.hash("123"),
-                null, null,
+            null, new Address(),
                 Role.USER);
 
         userDao().insert(user).blockingAwait();

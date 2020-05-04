@@ -24,6 +24,17 @@
     <string name="zip_code">Zip Code:</string>
     <string name="update_profile">Update Profile</string>
     <string name="delete_profile">Delete Profile</string>
+    <string name="view_cart">View Cart</string>
+    <string name="logout">LOGOUT</string>
+    <string name="view_profile">View Profile</string>
+    <string name="view_orders">View Orders</string>
+    <string name="search_vehicle">Search Vehicle</string>
+    <string name="view_vehicle">View Vehicle</string>
+    <string name="view_operators">View Operators</string>
+    <string name="view_revenue">View Revenue</string>
+    <string name="delete_user">Delete User</string>
+    <string name="view_schedule">View Schedule</string>
+    <string name="process_order">Process Order</string>
 
     <string-array name="VehicleType">
         <item>Food Truck</item>

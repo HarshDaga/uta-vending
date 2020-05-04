@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManagerHomescreen">
+    tools:context=".ManagerHomeScreen">
 
     <Button
         android:id="@+id/ViewVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Vehicle"
+        android:text="@string/view_vehicle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/ViewOperator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Operators"
+        android:text="@string/view_operators"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -30,10 +30,10 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <Button
-        android:id="@+id/viewrevenue"
+        android:id="@+id/ViewRevenue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Revenue"
+        android:text="@string/view_revenue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -45,19 +45,19 @@
         android:id="@+id/DeleteUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete User"
+        android:text="@string/delete_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewrevenue"
+        app:layout_constraintTop_toBottomOf="@+id/ViewRevenue"
         app:layout_constraintVertical_bias="0.078" />
 
     <Button
         android:id="@+id/ViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Profile"
+        android:text="@string/view_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -69,7 +69,7 @@
         android:id="@+id/LogoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 	{
 		String email = emailText.getText().toString().trim();
 		appDb.userDao()
-			.getUser(email, Role.USER.getCode())
+			.getUser(email, Role.USER)
 			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(this::onUserFound, this::onUserLookupError);
@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity
 		}
 
 		Toast.makeText(MainActivity.this, String.format("Welcome %s", user.firstName), Toast.LENGTH_LONG).show();
-		Intent afterLogin = AfterLoginActivity.getNavigationIntent(this, user.id);
-		startActivity(afterLogin);
+		Intent intent = new Intent(MainActivity.this, UserHomeScreen.class);
+		intent.putExtra("ID", user.id);
+		startActivity(intent);
 	}
 
 	private void onUserLookupError(Throwable throwable)

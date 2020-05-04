@@ -1,29 +1,24 @@
 package com.uta.vending;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.annotation.*;
+import android.content.*;
+import android.os.*;
+import android.text.*;
+import android.view.*;
+import android.widget.*;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.*;
 
-import com.uta.vending.data.AppDatabase;
-import com.uta.vending.data.entities.Address;
-import com.uta.vending.data.entities.Role;
-import com.uta.vending.data.entities.User;
+import com.uta.vending.data.*;
+import com.uta.vending.data.entities.*;
 
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.android.schedulers.*;
+import io.reactivex.schedulers.*;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity
+{
     AppDatabase appDb;
     EditText firstNameText;
     EditText lastNameText;
@@ -40,7 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @SuppressLint("CheckResult")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
@@ -61,7 +57,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     @SuppressLint("CheckResult")
-    private void onClickRegister(View v) {
+    private void onClickRegister(View v)
+    {
         int buttonId = roleGroup.getCheckedRadioButtonId();
         RadioButton roleButton = findViewById(buttonId);
 
@@ -79,56 +76,65 @@ public class RegisterActivity extends AppCompatActivity {
         user.address.zip = zipText.getText().toString().trim();
         user.role = Role.valueOf(roleButton.getText().toString().toUpperCase());
 
-        // TODO: Add validation logic
-
-        if (user.firstName.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Enter a First Name.", Toast.LENGTH_SHORT).show();
+        if (isInvalid(user))
             return;
-        }
-        if (user.lastName.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Enter a Last Name.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (user.email.isEmpty() || !isValidEmailId(user.email)) {
-            Toast.makeText(RegisterActivity.this, "Enter a valid Email ID.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (user.phone.isEmpty() || !isValidPhoneNumber(user.phone)) {
-            Toast.makeText(RegisterActivity.this, "Enter a valid Phone.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (user.password.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Enter a Password.", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         appDb.userDao()
-                .insert(user)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onRegistered);
+            .insert(user)
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::onRegistered);
     }
 
-    private void onRegistered() {
+    private boolean isInvalid(User user)
+    {
+        if (user.firstName.isEmpty())
+        {
+            makeShortToast("Enter a First Name.");
+            return true;
+        }
+        if (user.lastName.isEmpty())
+        {
+            makeShortToast("Enter a Last Name.");
+            return true;
+        }
+        if (user.email.isEmpty() || !isValidEmailId(user.email))
+        {
+            makeShortToast("Enter a valid Email ID.");
+            return true;
+        }
+        if (user.phone.length() != 10 || !TextUtils.isDigitsOnly(user.phone))
+        {
+            makeShortToast("Enter a valid Phone.");
+            return true;
+        }
+        if (user.password.isEmpty())
+        {
+            makeShortToast("Enter a Password.");
+            return true;
+        }
+
+        return false;
+    }
+
+    private void makeShortToast(String message)
+    {
+        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void onRegistered()
+    {
         Toast.makeText(RegisterActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
         Intent moveToLogin = new Intent(RegisterActivity.this, MainActivity.class);
         startActivity(moveToLogin);
         finish();
     }
 
-    private boolean isValidEmailId(String email) {
-
-        return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
-    }
-
-    private boolean isValidPhoneNumber(String phone) {
-        if (phone.length() != 10)
-            return false;
-        return TextUtils.isDigitsOnly(phone);
+    private boolean isValidEmailId(String email)
+    {
+        return Pattern
+            .compile("^[\\w.]+@mavs\\.uta\\.edu")
+            .matcher(email)
+            .matches();
     }
 }

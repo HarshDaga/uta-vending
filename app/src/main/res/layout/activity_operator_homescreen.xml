@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OperatorHomescreen">
+    tools:context=".OperatorHomeScreen">
 
     <Button
         android:id="@+id/ViewProfile"
         android:layout_width="126dp"
         android:layout_height="47dp"
-        android:text="View Profile"
+        android:text="@string/view_profile"
         app:layout_constraintBottom_toTopOf="@+id/LogoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,7 +22,7 @@
         android:id="@+id/ViewSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Schedule"
+        android:text="@string/view_schedule"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Process Order"
+        android:text="@string/process_order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ViewSchedule" />
