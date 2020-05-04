@@ -11,6 +11,7 @@
         android:id="@+id/LoginEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=".AUTOFILL_HINT_EMAIL_ADDRESS"
         android:ems="10"
         android:hint="@string/email_login_hint"
         android:inputType="textEmailAddress"
@@ -19,13 +20,13 @@
         app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087"
-        android:autofillHints=".AUTOFILL_HINT_EMAIL_ADDRESS" />
+        app:layout_constraintVertical_bias="0.087" />
 
     <EditText
         android:id="@+id/LoginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=".AUTOFILL_HINT_PASSWORD"
         android:ems="10"
         android:hint="@string/password_login_hint"
         android:inputType="textPassword"
@@ -34,8 +35,39 @@
         app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginEmail"
-        app:layout_constraintVertical_bias="0.036"
-        android:autofillHints=".AUTOFILL_HINT_PASSWORD" />
+        app:layout_constraintVertical_bias="0.036" />
+
+    <RadioGroup
+        android:id="@+id/LoginRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
+        app:layout_constraintVertical_bias="0.03">
+
+        <RadioButton
+            android:id="@+id/RadioUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/user_radio_text" />
+
+        <RadioButton
+            android:id="@+id/RadioOperator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/operator_radio_text" />
+
+        <RadioButton
+            android:id="@+id/RadioManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manager_radio_text" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/LoginButton"
@@ -46,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/LoginRole"
         app:layout_constraintVertical_bias="0.056" />
 
     <Button
@@ -65,7 +97,7 @@
         android:id="@+id/orText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="------------OR------------"
+        android:text="OR"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/RegisterNowButton"

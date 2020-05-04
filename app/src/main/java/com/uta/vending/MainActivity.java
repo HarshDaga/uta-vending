@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 	EditText passwordText;
 	Button btnLogin;
 	Button btnRegister;
+	RadioGroup roleGroup;
 	AppDatabase appDb;
 
 	@Override
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
 		passwordText = findViewById(R.id.LoginPassword);
 		btnLogin = findViewById(R.id.LoginButton);
 		btnRegister = findViewById(R.id.RegisterNowButton);
+		roleGroup = findViewById(R.id.LoginRole);
 
 		btnRegister.setOnClickListener(this::onClickRegister);
 		btnLogin.setOnClickListener(this::onClickLogin);
@@ -49,9 +51,14 @@ public class MainActivity extends AppCompatActivity
 	@SuppressLint("CheckResult")
 	private void onClickLogin(View v)
 	{
+		int buttonId = roleGroup.getCheckedRadioButtonId();
+		RadioButton roleButton = findViewById(buttonId);
+		Role role = Role.valueOf(roleButton.getText().toString().toUpperCase());
+
 		String email = emailText.getText().toString().trim();
+
 		appDb.userDao()
-			.getUser(email, Role.USER)
+			.getUser(email, role)
 			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(this::onUserFound, this::onUserLookupError);

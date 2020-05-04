@@ -62,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity
         int buttonId = roleGroup.getCheckedRadioButtonId();
         RadioButton roleButton = findViewById(buttonId);
 
-
         User user = new User();
         user.firstName = firstNameText.getText().toString().trim();
         user.lastName = lastNameText.getText().toString().trim();
