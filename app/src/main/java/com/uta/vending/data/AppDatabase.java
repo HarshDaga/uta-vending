@@ -23,7 +23,7 @@ import java.util.concurrent.*;
 			{
 				User.class, FoodItem.class,
 				Vehicle.class, InventoryItem.class,
-				Order.class, Schedule.class
+				Order.class, Schedule.class, Revenue.class
 			},
 		version = 8
 	)
