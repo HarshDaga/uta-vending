@@ -1,30 +1,47 @@
 package com.uta.vending;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import androidx.appcompat.app.*;
 
-public class ViewOperator extends AppCompatActivity {
+import com.uta.vending.data.*;
+import com.uta.vending.data.entities.*;
 
-    Button btnviewopdetails;
+import java.util.*;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_operator);
+public class ViewOperator extends AppCompatActivity
+{
+	Button btnViewOpDetails;
+	AppDatabase appDb;
 
-        btnviewopdetails=findViewById(R.id.ViewOperatorDetails);
-        btnviewopdetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent opdscreen=new Intent(ViewOperator.this, ViewOperatorDetails.class);
-                startActivity(opdscreen);
-            }
-        });
+	@SuppressLint("CheckResult")
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_view_operator);
+		appDb = AppDatabase.getInstance(this);
 
+		btnViewOpDetails = findViewById(R.id.BtnViewOperatorDetails);
+		btnViewOpDetails.setOnClickListener(this::onClickDetails);
 
-    }
+		appDb.userDao()
+			.getAll(Role.OPERATOR)
+			.subscribe(this::onFetchOperators);
+	}
+
+	private void onFetchOperators(List<User> users)
+	{
+		// TODO Populate UI
+	}
+
+	private void onClickDetails(View v)
+	{
+		Intent intent = new Intent(ViewOperator.this, ViewOperatorDetails.class);
+		startActivity(intent);
+	}
 }

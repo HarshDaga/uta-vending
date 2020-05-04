@@ -90,7 +90,9 @@ public class ViewProfile extends AppCompatActivity
 		if (isInvalid(user))
 			return;
 
-		appDb.userDao().update(user).subscribeOn(Schedulers.computation())
+		appDb.userDao()
+			.update(user)
+			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(this::onUpdateComplete);
 	}
