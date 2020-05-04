@@ -10,10 +10,13 @@ import io.reactivex.*;
 public interface UserDao
 {
 	@Insert
-	Completable insert(User... user);
+	Completable insert(User... users);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
-	Completable update(User... user);
+	Completable update(User... users);
+
+	@Delete
+	Completable delete(User... users);
 
 	@Query("SELECT * FROM users WHERE email = :email AND role = :role LIMIT 1")
 	Single<User> getUser(String email, int role);
