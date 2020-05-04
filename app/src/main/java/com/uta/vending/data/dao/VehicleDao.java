@@ -27,6 +27,15 @@ public interface VehicleDao
 	@Query("SELECT * FROM vehicles WHERE id = :id LIMIT 1")
 	Single<Vehicle> find(long id);
 
+	@Query("SELECT * FROM vehicles WHERE sch_cur_op_id = :operatorId LIMIT 1")
+	Single<Vehicle> findForOperatorToday(long operatorId);
+
+	@Query("SELECT * FROM vehicles WHERE sch_nxt_op_id = :operatorId LIMIT 1")
+	Single<Vehicle> findForOperatorNext(long operatorId);
+
+	@Query("SELECT * FROM vehicles WHERE sch_cur_loc LIKE :location")
+	Flowable<List<Vehicle>> findForLocation(String location);
+
 	@Transaction
 	@Query("SELECT * FROM vehicles WHERE id = :id LIMIT 1")
 	Single<VehicleInventory> getInventory(long id);

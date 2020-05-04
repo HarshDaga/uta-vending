@@ -5,6 +5,8 @@ import androidx.room.*;
 import com.uta.vending.data.converters.*;
 import com.uta.vending.data.entities.*;
 
+import java.util.*;
+
 import io.reactivex.*;
 
 @Dao
@@ -25,5 +27,9 @@ public interface UserDao
 
 	@Query("SELECT * FROM users WHERE id = :userId LIMIT 1")
 	Single<User> getUser(long userId);
+
+	@TypeConverters(RoleConverter.class)
+	@Query("SELECT * FROM users WHERE role = :role")
+	Flowable<List<User>> getAll(Role role);
 }
 

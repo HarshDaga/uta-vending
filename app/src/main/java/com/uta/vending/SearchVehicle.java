@@ -1,14 +1,11 @@
 package com.uta.vending;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import androidx.appcompat.app.*;
 
 public class SearchVehicle extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,7 +29,7 @@ public class SearchVehicle extends AppCompatActivity implements AdapterView.OnIt
         vtype.setAdapter(adapter);
         vtype.setOnItemSelectedListener(this);
 
-        Spinner loctn=findViewById(R.id.locationspinner);
+	    Spinner loctn = findViewById(R.id.LocationSpinner);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.LocationSp, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         loctn.setAdapter(adapter2);

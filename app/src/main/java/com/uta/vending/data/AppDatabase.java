@@ -23,7 +23,7 @@ import java.util.concurrent.*;
                         {
                                 User.class, FoodItem.class,
                                 Vehicle.class, InventoryItem.class,
-                                Order.class, Schedule.class, Revenue.class
+                            Order.class, Revenue.class
                         },
                 version = 8
         )
@@ -70,8 +70,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     abstract public OrderDao orderDao();
 
-    abstract public ScheduleDao scheduleDao();
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void populate() {
         Log.d(AppDatabase.class.getName(), "Populating Database");
@@ -81,7 +79,6 @@ public abstract class AppDatabase extends RoomDatabase {
         populateVehicles();
         populateInventory();
 //		populateOrders();
-        populateSchedule();
     }
 
     private void populateUsers() {
@@ -147,16 +144,5 @@ public abstract class AppDatabase extends RoomDatabase {
         order.addItem(new OrderItem(foodItems.get(1), 1));
 
         orderDao().insert(order).blockingAwait();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void populateSchedule() {
-        LocalDateTime today = LocalDateTime.now()
-                .withNano(0)
-                .withSecond(0)
-                .withMinute(0)
-                .withHour(0);
-        Schedule s = new Schedule(7, 1, "UTA", today.withHour(11), today.withHour(13));
-        scheduleDao().insert(s).blockingAwait();
     }
 }

@@ -240,7 +240,7 @@
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/locationspinner"
+        android:id="@+id/LocationSpinner"
         android:layout_width="198dp"
         android:layout_height="26dp"
         android:spinnerMode="dropdown"

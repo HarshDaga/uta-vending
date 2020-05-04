@@ -6,23 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ViewVehicle">
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="63dp"
-        android:layout_height="35dp"
-        android:text="From"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626"
-        tools:ignore="MissingConstraints" />
-
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/TableVehicles"
         android:layout_width="match_parent"
         android:layout_height="172dp"
+        android:stretchColumns="1"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.118"
@@ -30,11 +19,9 @@
         tools:layout_editor_absoluteX="0dp">
 
         <TableRow>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Vehicle Name"
                 android:textStyle="bold" />
@@ -42,17 +29,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
                 android:gravity="center"
-                android:text="Vehicle Location"
+                android:text="Location"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Op Name"
+                android:text="Operator"
                 android:textStyle="bold" />
 
         </TableRow>
@@ -62,21 +47,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Cart1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
                 android:gravity="center"
                 android:text="S Oak &amp; UTA Blvd" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Sam" />
         </TableRow>
@@ -86,21 +68,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Cart2" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
                 android:gravity="center"
                 android:text="S Davis &amp; W Mitchell" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="John" />
         </TableRow>
@@ -110,21 +89,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Truck1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
                 android:gravity="center"
                 android:text="Cooper &amp; W Mitchell" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Lester" />
 
@@ -141,7 +117,8 @@
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
+        app:layout_constraintVertical_bias="0.803"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView26"
@@ -185,7 +162,7 @@
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/locationspinner"
+        android:id="@+id/LocationSpinner"
         android:layout_width="225dp"
         android:layout_height="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -197,14 +174,30 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/ediTextTimeTo"
-        android:layout_width="78dp"
-        android:layout_height="44dp"
+        android:id="@+id/ediTextTimeFrom"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
         android:hint="HH:MM"
         android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.634"
+        tools:ignore="MissingConstraints">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/ediTextTimeTo"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:hint="HH:MM"
+        android:inputType="time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.634"
@@ -221,8 +214,8 @@
         tools:layout_editor_absoluteY="255dp"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextVehicleName"
+    <Spinner
+        android:id="@+id/VehicleName"
         android:layout_width="228dp"
         android:layout_height="29dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -231,19 +224,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.507" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HH:MM - HH:MM"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683"
-        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

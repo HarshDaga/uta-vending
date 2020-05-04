@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 8,
-    "identityHash": "1763907685b7079f047b032f6797d565",
+    "identityHash": "68e4e1241579900713144bccd9e2ae90",
     "entities": [
       {
         "tableName": "users",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "vehicles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `type` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `type` TEXT, `sch_cur_op_id` INTEGER, `sch_cur_loc` TEXT, `sch_cur_start` INTEGER, `sch_cur_end` INTEGER, `sch_nxt_op_id` INTEGER, `sch_nxt_loc` TEXT, `sch_nxt_start` INTEGER, `sch_nxt_end` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -136,6 +136,54 @@
             "fieldPath": "type",
             "columnName": "type",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleToday.operatorId",
+            "columnName": "sch_cur_op_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleToday.location",
+            "columnName": "sch_cur_loc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleToday.start",
+            "columnName": "sch_cur_start",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleToday.end",
+            "columnName": "sch_cur_end",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleNext.operatorId",
+            "columnName": "sch_nxt_op_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleNext.location",
+            "columnName": "sch_nxt_loc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleNext.start",
+            "columnName": "sch_nxt_start",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "scheduleNext.end",
+            "columnName": "sch_nxt_end",
+            "affinity": "INTEGER",
             "notNull": false
           }
         ],
@@ -366,96 +414,6 @@
         ]
       },
       {
-        "tableName": "schedule",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `operator_id` INTEGER NOT NULL, `vehicle_id` INTEGER NOT NULL, `location` TEXT, `start` INTEGER, `end` INTEGER, FOREIGN KEY(`operator_id`) REFERENCES `users`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`vehicle_id`) REFERENCES `vehicles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "operatorId",
-            "columnName": "operator_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "vehicleId",
-            "columnName": "vehicle_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "location",
-            "columnName": "location",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "start",
-            "columnName": "start",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "end",
-            "columnName": "end",
-            "affinity": "INTEGER",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [
-          {
-            "name": "schedule_operator_id_index",
-            "unique": false,
-            "columnNames": [
-              "operator_id"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `schedule_operator_id_index` ON `${TABLE_NAME}` (`operator_id`)"
-          },
-          {
-            "name": "schedule_vehicle_id_index",
-            "unique": false,
-            "columnNames": [
-              "vehicle_id"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `schedule_vehicle_id_index` ON `${TABLE_NAME}` (`vehicle_id`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "users",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "operator_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          },
-          {
-            "table": "vehicles",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "vehicle_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
-      },
-      {
         "tableName": "revenue",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER, `amount` TEXT)",
         "fields": [
@@ -491,7 +449,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1763907685b7079f047b032f6797d565')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '68e4e1241579900713144bccd9e2ae90')"
     ]
   }
 }

@@ -47,7 +47,6 @@ public class UserHomeScreen extends AppCompatActivity
 
 		btnViewCart = findViewById(R.id.ViewCart);
 		btnViewCart.setOnClickListener(this::onClickViewCart);
-
 	}
 
 	private void onClickSearchVehicle(View v)
