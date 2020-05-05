@@ -23,4 +23,15 @@ abstract class ConverterBase
 
 		return gson.fromJson(json, type);
 	}
+
+	static <T> T[] fromJson(String json, Class<T[]> klass)
+	{
+		Gson gson = new Gson();
+
+		Type type = new TypeToken<T>()
+		{
+		}.getType();
+
+		return gson.fromJson(json, klass);
+	}
 }

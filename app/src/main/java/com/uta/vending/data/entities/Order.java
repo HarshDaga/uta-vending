@@ -10,30 +10,31 @@ import com.uta.vending.data.converters.*;
 import java.math.*;
 import java.time.*;
 import java.util.*;
+import java.util.stream.*;
 
 @SuppressWarnings("WeakerAccess")
 @Entity(
-	tableName = "orders",
-	foreignKeys =
-		{
-			@ForeignKey(entity = User.class,
-				parentColumns = "id",
-				childColumns = "user_id",
-				onDelete = ForeignKey.CASCADE),
-			@ForeignKey(entity = User.class,
-				parentColumns = "id",
-				childColumns = "operator_id",
-				onDelete = ForeignKey.CASCADE),
-			@ForeignKey(entity = Vehicle.class,
-				parentColumns = "id",
-				childColumns = "vehicle_id",
-				onDelete = ForeignKey.CASCADE)
-		},
-	indices = {
-		@Index(name = "order_user_id_index", value = {"user_id"}),
-		@Index(name = "order_operator_id_index", value = {"operator_id"}),
-		@Index(name = "order_vehicle_id_index", value = {"vehicle_id"})
-	}
+		tableName = "orders",
+		foreignKeys =
+				{
+						@ForeignKey(entity = User.class,
+								parentColumns = "id",
+								childColumns = "user_id",
+								onDelete = ForeignKey.CASCADE),
+						@ForeignKey(entity = User.class,
+								parentColumns = "id",
+								childColumns = "operator_id",
+								onDelete = ForeignKey.CASCADE),
+						@ForeignKey(entity = Vehicle.class,
+								parentColumns = "id",
+								childColumns = "vehicle_id",
+								onDelete = ForeignKey.CASCADE)
+				},
+		indices = {
+				@Index(name = "order_user_id_index", value = {"user_id"}),
+				@Index(name = "order_operator_id_index", value = {"operator_id"}),
+				@Index(name = "order_vehicle_id_index", value = {"vehicle_id"})
+		}
 )
 public class Order
 {
@@ -61,7 +62,7 @@ public class Order
 	public boolean isServed;
 
 	@TypeConverters(ListConverter.class)
-	public List<OrderItem> items;
+	public OrderItem[] items;
 
 	public Order()
 	{
@@ -75,20 +76,25 @@ public class Order
 		this.date = date;
 		this.vehicleId = vehicleId;
 		this.location = location;
-		this.items = new ArrayList<>();
+		this.items = new OrderItem[0];
 		this.cost = BigDecimal.ZERO;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.N)
 	public void addItem(OrderItem item)
 	{
-		this.items.add(item);
+		List<OrderItem> temp = Arrays.stream(items).collect(Collectors.toList());
+		temp.add(item);
+		items = temp.toArray(items);
 		computeCost();
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void removeItem(OrderItem item)
 	{
-		items.removeIf(x -> x.item.id == item.item.id);
+		List<OrderItem> temp = Arrays.stream(items).collect(Collectors.toList());
+		temp.removeIf(x -> x.item.id == item.item.id);
+		items = temp.toArray(items);
 		computeCost();
 	}
 
@@ -107,4 +113,3 @@ public class Order
 		return cost;
 	}
 }
-

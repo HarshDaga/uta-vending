@@ -73,13 +73,14 @@ public class UserHomeScreen extends AppCompatActivity
 
 	private void onClickViewOrder(View v)
 	{
-		Intent intent = new Intent(UserHomeScreen.this, InvoiceScreen.class);
+		Intent intent = new Intent(UserHomeScreen.this, OrdersList.class);
+		intent.putExtra("UserID", id);
 		startActivity(intent);
 	}
 
 	private void onClickViewCart(View v)
 	{
-		Intent intent = new Intent(UserHomeScreen.this, EditCart.class);
+		Intent intent = new Intent(UserHomeScreen.this, ViewInventory.class);
 		startActivity(intent);
 	}
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.uta.vending.data.AppDatabase;
 import com.uta.vending.data.entities.Order;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -38,12 +39,11 @@ public class OrderDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order_details);
         appDb = AppDatabase.getInstance(this);
         orderId = getOrderIdFromIntent();
         cost = findViewById(R.id.textViewCost);
         lstOrders = findViewById(R.id.listOrderItems);
-//
-//        lstOrders.
 
         appDb.orderDao()
                 .findOrder(orderId)
@@ -52,11 +52,11 @@ public class OrderDetails extends AppCompatActivity {
                 .subscribe(order1 -> {
 
                     order = order1;
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(OrderDetails.this, android.R.layout.simple_list_item_1, order1.items.stream().map(item -> ("Item: " + item.item.type + ", Cost: $" + String.format("%.2f", item.item.cost.doubleValue()) + ", Quantity: " + item.quantity)).collect(Collectors.toList()));
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(OrderDetails.this, android.R.layout.simple_list_item_1, Arrays.stream(order1.items).map(item -> ("Item: " + item.item.type + ", Cost: $" + String.format("%.2f", item.getTotalCost().doubleValue()) + ", Quantity: " + item.quantity)).collect(Collectors.toList()));
                     lstOrders.setAdapter(arrayAdapter);
                     lstOrders.invalidate();
                     cost.append(" " + String.format("%.2f", order1.cost.doubleValue()));
                 });
-        setContentView(R.layout.activity_order_details);
+
     }
 }

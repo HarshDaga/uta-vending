@@ -10,9 +10,9 @@
         android:id="@+id/listOrderItems"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginBottom="84dp"
         android:scrollbars="horizontal|vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnCheckout"
+
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -20,22 +20,39 @@
         android:id="@+id/btnCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+
+        android:layout_marginLeft="157dp"
+        android:layout_marginBottom="57dp"
         android:text="Checkout"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="500dp"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"></Button>
 
     <TextView
         android:id="@+id/textViewCost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="136dp"
         android:gravity="center_horizontal"
         android:text="Total Cost: $"
         android:textAlignment="center"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="440dp" />
+        tools:layout_editor_absoluteX="148dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
