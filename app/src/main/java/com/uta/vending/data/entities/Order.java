@@ -81,7 +81,7 @@ public class Order
 
 	public void addItem(OrderItem item)
 	{
-		items.add(item);
+		this.items.add(item);
 		computeCost();
 	}
 

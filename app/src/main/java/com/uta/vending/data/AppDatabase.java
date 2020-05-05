@@ -17,6 +17,9 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 @Database
         (
                 entities =
@@ -78,6 +81,7 @@ public abstract class AppDatabase extends RoomDatabase {
         populateFood();
         populateVehicles();
         populateInventory();
+
 //		populateOrders();
     }
 
@@ -106,8 +110,8 @@ public abstract class AppDatabase extends RoomDatabase {
                 .insert
                         (
                                 new FoodItem("Sandwich", 5),
-                                new FoodItem("Snacks", 3),
-                                new FoodItem("Drink", 2)
+                                new FoodItem("Snacks", 10),
+                                new FoodItem("Drink", 5)
                         )
                 .blockingAwait();
     }
@@ -133,6 +137,11 @@ public abstract class AppDatabase extends RoomDatabase {
         vehicles[1].scheduleToday.location = "S Davis & W Mitchell";
         vehicles[1].scheduleToday.start = today.withHour(14);
         vehicles[1].scheduleToday.end = today.withHour(17);
+
+        User operator = userDao().getUser("OPERATOR1@email.com", Role.OPERATOR).blockingGet();
+        vehicles[0].scheduleToday.operatorId = operator.id;
+        vehicles[1].scheduleToday.operatorId = operator.id;
+
         vehicleDao()
                 .insert(vehicles)
                 .blockingAwait();
@@ -144,7 +153,7 @@ public abstract class AppDatabase extends RoomDatabase {
         for (FoodItem item : foodItems)
             for (Vehicle vehicle : vehicles) {
                 inventoryDao()
-                        .insert(new InventoryItem(vehicle.id, item, 5))
+                        .insert(new InventoryItem(vehicle.id, item, 200))
                         .blockingAwait();
             }
     }

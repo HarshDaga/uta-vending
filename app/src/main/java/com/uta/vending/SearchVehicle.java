@@ -37,6 +37,7 @@ public class SearchVehicle extends AppCompatActivity {
 
     String filterType;
     String filterLocation;
+    long userId;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void onVehicleListGet(List<Vehicle> vehicles) {
@@ -60,6 +61,15 @@ public class SearchVehicle extends AppCompatActivity {
         Toast.makeText(SearchVehicle.this, "Error", Toast.LENGTH_LONG).show();
     }
 
+    private long getIdFromIntent()
+    {
+        if (this.getIntent() != null)
+        {
+            return this.getIntent().getLongExtra("ID", 0);
+        }
+        return 0;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +81,7 @@ public class SearchVehicle extends AppCompatActivity {
         vehicleList = findViewById(R.id.listVehicles);
         btnSearch = findViewById(R.id.button);
 
+        userId = getIdFromIntent();
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("CheckResult")
             @Override
@@ -89,6 +100,7 @@ public class SearchVehicle extends AppCompatActivity {
                 Vehicle vehicle = SearchVehicle.this.vehicles.get(position);
                 Intent intent = new Intent(SearchVehicle.this, ViewInventory.class);
                 intent.putExtra("VehicleID", vehicle.id);
+                intent.putExtra("UserID", userId);
                 startActivity(intent);
             }
         });
