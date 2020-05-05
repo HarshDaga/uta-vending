@@ -25,7 +25,7 @@ import java.util.concurrent.*;
                                 Vehicle.class, InventoryItem.class,
                             Order.class, Revenue.class
                         },
-                version = 8
+                version = 9
         )
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "data.db";
@@ -112,17 +112,31 @@ public abstract class AppDatabase extends RoomDatabase {
                 .blockingAwait();
     }
 
-    private void populateVehicles() {
-        vehicleDao()
-                .insert(
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void populateVehicles()
+    {
+        LocalDateTime today = LocalDateTime.now()
+                .withHour(0)
+                .withMinute(0)
+                .withSecond(0)
+                .withNano(0);
+        Vehicle[] vehicles = new Vehicle[]
+                {
                         new Vehicle("Truck 01", "Food Truck"),
                         new Vehicle("Truck 02", "Food Truck"),
                         new Vehicle("Cart 01", "Cart"),
                         new Vehicle("Cart 02", "Cart")
-                )
+                };
+        vehicles[0].scheduleToday.location = "Cooper & UTA Blvd";
+        vehicles[0].scheduleToday.start = today.withHour(11);
+        vehicles[0].scheduleToday.end = today.withHour(13);
+        vehicles[1].scheduleToday.location = "S Davis & W Mitchell";
+        vehicles[1].scheduleToday.start = today.withHour(14);
+        vehicles[1].scheduleToday.end = today.withHour(17);
+        vehicleDao()
+                .insert(vehicles)
                 .blockingAwait();
     }
-
     @SuppressLint("CheckResult")
     private void populateInventory() {
         List<FoodItem> foodItems = foodDao().getAll().blockingFirst();

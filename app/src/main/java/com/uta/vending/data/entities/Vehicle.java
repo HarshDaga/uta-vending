@@ -1,5 +1,6 @@
 package com.uta.vending.data.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.*;
 
 @SuppressWarnings("unused")
@@ -31,6 +32,12 @@ public class Vehicle
 	{
 		scheduleToday = new Schedule();
 		scheduleNext = new Schedule();
+	}
+
+	@NonNull
+	@Override
+	public String toString() {
+		return "Name:";
 	}
 }
 
