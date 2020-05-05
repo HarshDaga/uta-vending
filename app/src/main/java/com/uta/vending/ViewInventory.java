@@ -85,9 +85,12 @@ public class ViewInventory extends AppCompatActivity {
                 Integer sandwiches = 0, snacks = 0, drinks = 0;
 
                 try {
-                    sandwiches = Integer.parseInt(editTextSandwiches.getText().toString().trim());
-                    snacks = Integer.parseInt(editTextSnacks.getText().toString().trim());
-                    drinks = Integer.parseInt(editTextDrinks.getText().toString().trim());
+                    if (!"".equals((editTextSandwiches.getText().toString().trim())))
+                        sandwiches = Integer.parseInt(editTextSandwiches.getText().toString().trim());
+                    if (!"".equals((editTextSnacks.getText().toString().trim())))
+                        snacks = Integer.parseInt(editTextSnacks.getText().toString().trim());
+                    if (!"".equals((editTextDrinks.getText().toString().trim())))
+                        drinks = Integer.parseInt(editTextDrinks.getText().toString().trim());
                 } catch (Exception ex) {
                     Log.e("Error", "Error", ex);
                     Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
