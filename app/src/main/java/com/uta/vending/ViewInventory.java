@@ -73,66 +73,65 @@ public class ViewInventory extends AppCompatActivity {
         } else {
             getIdFromIntent();
 
-
-            addToCart = findViewById(R.id.btnAddToCart);
-            addToCart.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.O)
-                @Override
-                public void onClick(View v) {
-
-                    Integer sandwiches = 0, snacks = 0, drinks = 0;
-
-                    try {
-                        sandwiches = Integer.parseInt(editTextSandwiches.getText().toString().trim());
-                        snacks = Integer.parseInt(editTextSnacks.getText().toString().trim());
-                        drinks = Integer.parseInt(editTextDrinks.getText().toString().trim());
-                    } catch (Exception ex) {
-                        Log.e("Error", "Error", ex);
-                        Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
-                    }
-                    Order order = new Order(userId, currentVehicle.scheduleToday.operatorId, LocalDateTime.now(), vehicleId, currentVehicle.scheduleToday.location);
-
-                    boolean failed = false;
-
-                    for (InventoryItem item : ViewInventory.this.inventoryItemList) {
-
-                        if (!failed && item.item.type.equals("Sandwich") && sandwiches > 0) {
-                            if (item.quantity - sandwiches >= 0) {
-
-                                order.addItem(new OrderItem(item.item, sandwiches));
-                            } else
-                                failed = true;
-                        }
-                        if (!failed && item.item.type.equals("Snacks") && snacks > 0) {
-                            if (item.quantity - snacks >= 0) {
-                                order.addItem(new OrderItem(item.item, snacks));
-                            } else
-                                failed = true;
-                        }
-                        if (!failed && item.item.type.equals("Drink") && drinks > 0) {
-                            if (item.quantity - drinks >= 0) {
-                                order.addItem(new OrderItem(item.item, drinks));
-                            } else
-                                failed = true;
-                        }
-                    }
-
-                    if (!failed) {
-                        order.isServed = false;
-                        cartOrder = order;
-                        Intent intent = new Intent(ViewInventory.this, EditCart.class);
-                        intent.putExtra("UserID", order.userId);
-                        startActivity(intent);
-                        finish();
-                    } else
-                        Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
-
-
-                }
-            });
         }
         listInventory = findViewById(R.id.listInventory);
 
+        addToCart = findViewById(R.id.btnAddToCart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                Integer sandwiches = 0, snacks = 0, drinks = 0;
+
+                try {
+                    sandwiches = Integer.parseInt(editTextSandwiches.getText().toString().trim());
+                    snacks = Integer.parseInt(editTextSnacks.getText().toString().trim());
+                    drinks = Integer.parseInt(editTextDrinks.getText().toString().trim());
+                } catch (Exception ex) {
+                    Log.e("Error", "Error", ex);
+                    Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
+                }
+                Order order = new Order(userId, currentVehicle.scheduleToday.operatorId, LocalDateTime.now(), vehicleId, currentVehicle.scheduleToday.location);
+
+                boolean failed = false;
+
+                for (InventoryItem item : ViewInventory.this.inventoryItemList) {
+
+                    if (!failed && item.item.type.equals("Sandwich") && sandwiches > 0) {
+                        if (item.quantity - sandwiches >= 0) {
+
+                            order.addItem(new OrderItem(item.item, sandwiches));
+                        } else
+                            failed = true;
+                    }
+                    if (!failed && item.item.type.equals("Snacks") && snacks > 0) {
+                        if (item.quantity - snacks >= 0) {
+                            order.addItem(new OrderItem(item.item, snacks));
+                        } else
+                            failed = true;
+                    }
+                    if (!failed && item.item.type.equals("Drink") && drinks > 0) {
+                        if (item.quantity - drinks >= 0) {
+                            order.addItem(new OrderItem(item.item, drinks));
+                        } else
+                            failed = true;
+                    }
+                }
+
+                if (!failed) {
+                    order.isServed = false;
+                    cartOrder = order;
+                    Intent intent = new Intent(ViewInventory.this, EditCart.class);
+                    intent.putExtra("UserID", order.userId);
+                    startActivity(intent);
+                    finish();
+                } else
+                    Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
         if (vehicleId > 0) {
             appDb.vehicleDao().find(vehicleId).subscribeOn(Schedulers.computation())
