@@ -4,18 +4,16 @@ import androidx.room.*;
 
 import com.uta.vending.data.entities.*;
 
-import java.util.*;
-
 public class ListConverter extends ConverterBase
 {
 	@TypeConverter
-	public static List<OrderItem> stringToOrderItemList(String data)
+	public static OrderItem[] stringToOrderItemList(String data)
 	{
-		return fromJson(data);
+		return fromJson(data, OrderItem[].class);
 	}
 
 	@TypeConverter
-	public static String orderItemsToString(List<OrderItem> items)
+	public static String orderItemsToString(OrderItem[] items)
 	{
 		return toJson(items);
 	}

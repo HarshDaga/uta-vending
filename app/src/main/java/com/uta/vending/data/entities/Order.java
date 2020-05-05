@@ -10,6 +10,7 @@ import com.uta.vending.data.converters.*;
 import java.math.*;
 import java.time.*;
 import java.util.*;
+import java.util.stream.*;
 
 @SuppressWarnings("WeakerAccess")
 @Entity(
@@ -61,7 +62,7 @@ public class Order
 	public boolean isServed;
 
 	@TypeConverters(ListConverter.class)
-	public List<OrderItem> items;
+	public OrderItem[] items;
 
 	public Order()
 	{
@@ -75,20 +76,25 @@ public class Order
 		this.date = date;
 		this.vehicleId = vehicleId;
 		this.location = location;
-		this.items = new ArrayList<>();
+		this.items = new OrderItem[0];
 		this.cost = BigDecimal.ZERO;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.N)
 	public void addItem(OrderItem item)
 	{
-		this.items.add(item);
+		List<OrderItem> temp = Arrays.stream(items).collect(Collectors.toList());
+		temp.add(item);
+		items = temp.toArray(items);
 		computeCost();
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void removeItem(OrderItem item)
 	{
-		items.removeIf(x -> x.item.id == item.item.id);
+		List<OrderItem> temp = Arrays.stream(items).collect(Collectors.toList());
+		temp.removeIf(x -> x.item.id == item.item.id);
+		items = temp.toArray(items);
 		computeCost();
 	}
 

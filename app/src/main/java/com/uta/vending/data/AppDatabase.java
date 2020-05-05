@@ -17,27 +17,27 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 @Database
-        (
-                entities =
-                        {
-                                User.class, FoodItem.class,
-                                Vehicle.class, InventoryItem.class,
-                            Order.class, Revenue.class
-                        },
-                version = 9
-        )
-public abstract class AppDatabase extends RoomDatabase {
+    (
+        entities =
+            {
+                User.class, FoodItem.class,
+                Vehicle.class, InventoryItem.class,
+                Order.class, Revenue.class
+            },
+        version = 9
+    )
+public abstract class AppDatabase extends RoomDatabase
+{
     private static final String DB_NAME = "data.db";
     private static AppDatabase INSTANCE;
     private static ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    public static AppDatabase getInstance(@NonNull Context context) {
+    public static AppDatabase getInstance(@NonNull Context context)
+    {
         if (INSTANCE == null)
-            synchronized (AppDatabase.class) {
+            synchronized (AppDatabase.class)
+            {
                 INSTANCE = buildDatabase(context);
                 executorService.execute(() -> INSTANCE.runInTransaction(() ->
                 { // dummy tx just to enforce db creation
@@ -47,20 +47,23 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static AppDatabase buildDatabase(@NonNull Context context) {
+    private static AppDatabase buildDatabase(@NonNull Context context)
+    {
         Log.d(AppDatabase.class.getName(), "Creating Database instance");
         return Room
-                .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
-                .addCallback(new Callback() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                        super.onCreate(db);
-                        Executors.newSingleThreadScheduledExecutor().execute(() -> getInstance(context).populate());
-                    }
-                })
-                .fallbackToDestructiveMigration()
-                .build();
+            .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
+            .addCallback(new Callback()
+            {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onCreate(@NonNull SupportSQLiteDatabase db)
+                {
+                    super.onCreate(db);
+                    Executors.newSingleThreadScheduledExecutor().execute(() -> getInstance(context).populate());
+                }
+            })
+            .fallbackToDestructiveMigration()
+            .build();
     }
 
     abstract public UserDao userDao();
@@ -74,7 +77,8 @@ public abstract class AppDatabase extends RoomDatabase {
     abstract public OrderDao orderDao();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void populate() {
+    private void populate()
+    {
         Log.d(AppDatabase.class.getName(), "Populating Database");
 
         populateUsers();
@@ -82,19 +86,21 @@ public abstract class AppDatabase extends RoomDatabase {
         populateVehicles();
         populateInventory();
 
-//		populateOrders();
+        populateOrders();
     }
 
-    private void populateUsers() {
+    private void populateUsers()
+    {
         User user = new User("Harsh", "Daga",
-                "harsh@gmail.com", User.hash("123"),
+            "harsh@gmail.com", User.hash("123"),
             null, new Address(),
-                Role.USER);
+            Role.USER);
 
         userDao().insert(user).blockingAwait();
 
         for (Role role : Role.values())
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++)
+            {
                 user.firstName = role.toString() + (i + 1);
                 user.lastName = "Empty";
                 user.email = user.firstName + "@email.com";
@@ -105,32 +111,33 @@ public abstract class AppDatabase extends RoomDatabase {
             }
     }
 
-    private void populateFood() {
+    private void populateFood()
+    {
         foodDao()
-                .insert
-                        (
-                                new FoodItem("Sandwich", 5),
-                                new FoodItem("Snacks", 10),
-                                new FoodItem("Drink", 5)
-                        )
-                .blockingAwait();
+            .insert
+                (
+                    new FoodItem("Sandwich", 5),
+                    new FoodItem("Snacks", 10),
+                    new FoodItem("Drink", 5)
+                )
+            .blockingAwait();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void populateVehicles()
     {
         LocalDateTime today = LocalDateTime.now()
-                .withHour(0)
-                .withMinute(0)
-                .withSecond(0)
-                .withNano(0);
+            .withHour(0)
+            .withMinute(0)
+            .withSecond(0)
+            .withNano(0);
         Vehicle[] vehicles = new Vehicle[]
-                {
-                        new Vehicle("Truck 01", "Food Truck"),
-                        new Vehicle("Truck 02", "Food Truck"),
-                        new Vehicle("Cart 01", "Cart"),
-                        new Vehicle("Cart 02", "Cart")
-                };
+            {
+                new Vehicle("Truck 01", "Food Truck"),
+                new Vehicle("Truck 02", "Food Truck"),
+                new Vehicle("Cart 01", "Cart"),
+                new Vehicle("Cart 02", "Cart")
+            };
         vehicles[0].scheduleToday.location = "Cooper & UTA Blvd";
         vehicles[0].scheduleToday.start = today.withHour(11);
         vehicles[0].scheduleToday.end = today.withHour(13);
@@ -143,29 +150,34 @@ public abstract class AppDatabase extends RoomDatabase {
         vehicles[1].scheduleToday.operatorId = operator.id;
 
         vehicleDao()
-                .insert(vehicles)
-                .blockingAwait();
+            .insert(vehicles)
+            .blockingAwait();
     }
+
     @SuppressLint("CheckResult")
-    private void populateInventory() {
+    private void populateInventory()
+    {
         List<FoodItem> foodItems = foodDao().getAll().blockingFirst();
         List<Vehicle> vehicles = vehicleDao().getAll().blockingFirst();
         for (FoodItem item : foodItems)
-            for (Vehicle vehicle : vehicles) {
+            for (Vehicle vehicle : vehicles)
+            {
                 inventoryDao()
-                        .insert(new InventoryItem(vehicle.id, item, 200))
-                        .blockingAwait();
+                    .insert(new InventoryItem(vehicle.id, item, 200))
+                    .blockingAwait();
             }
     }
 
     @SuppressWarnings("unused")
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void populateOrders() {
-        Order order = new Order(2, 7, LocalDateTime.now(), 1, "UTA");
+    private void populateOrders()
+    {
+        Order order = new Order(1, 7, LocalDateTime.now(), 1, "UTA");
         List<FoodItem> foodItems = foodDao().getAll().blockingFirst();
         order.addItem(new OrderItem(foodItems.get(0), 2));
         order.addItem(new OrderItem(foodItems.get(1), 1));
 
         orderDao().insert(order).blockingAwait();
+        order = orderDao().findOrder(1).blockingGet();
     }
 }

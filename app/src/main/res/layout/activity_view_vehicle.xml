@@ -6,106 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ViewVehicle">
 
-    <TableLayout
-        android:id="@+id/TableVehicles"
+    <ListView
+        android:id="@+id/listVehicles"
         android:layout_width="match_parent"
         android:layout_height="172dp"
-        android:stretchColumns="1"
         android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="horizontal|vertical"
         app:layout_constraintVertical_bias="0.118"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Vehicle Name"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Location"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Operator"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Cart1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="S Oak &amp; UTA Blvd" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sam" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Cart2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="S Davis &amp; W Mitchell" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="John" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Truck1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Cooper &amp; W Mitchell" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Lester" />
-
-        </TableRow>
-    </TableLayout>
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/AssignLocation"
@@ -214,7 +122,7 @@
         tools:layout_editor_absoluteY="255dp"
         tools:ignore="MissingConstraints" />
 
-    <Spinner
+    <TextView
         android:id="@+id/VehicleName"
         android:layout_width="228dp"
         android:layout_height="29dp"

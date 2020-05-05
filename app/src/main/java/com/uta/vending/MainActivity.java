@@ -1,25 +1,20 @@
 package com.uta.vending;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.annotation.*;
+import android.content.*;
+import android.os.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.*;
 
-import com.uta.vending.data.AppDatabase;
-import com.uta.vending.data.entities.Role;
-import com.uta.vending.data.entities.User;
+import com.uta.vending.data.*;
+import com.uta.vending.data.entities.*;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.android.schedulers.*;
+import io.reactivex.schedulers.*;
 
 public class MainActivity extends AppCompatActivity {
     EditText emailText;
@@ -28,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnRegister;
     RadioGroup roleGroup;
     AppDatabase appDb;
-    RadioGroup loginRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case USER:
                 intent = new Intent(MainActivity.this, UserHomeScreen.class);
-
                 break;
         }
         Toast.makeText(MainActivity.this, String.format("Welcome %s", user.firstName), Toast.LENGTH_LONG).show();
