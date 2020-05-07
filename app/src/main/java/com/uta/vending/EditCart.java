@@ -104,5 +104,6 @@ public class EditCart extends AppCompatActivity
 		Intent intent = new Intent(EditCart.this, InvoiceScreen.class);
 		intent.putExtra("OrderID", this.orderId);
 		startActivity(intent);
+		finish();
 	}
 }

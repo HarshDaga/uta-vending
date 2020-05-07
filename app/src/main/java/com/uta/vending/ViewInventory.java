@@ -191,7 +191,6 @@ public class ViewInventory extends AppCompatActivity
 			Intent intent = new Intent(ViewInventory.this, EditCart.class);
 			intent.putExtra("UserID", order.userId);
 			startActivity(intent);
-			finish();
 		}
 		else
 			Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
