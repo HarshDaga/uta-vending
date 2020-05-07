@@ -10,109 +10,98 @@
         android:id="@+id/editTextSandwiches"
         android:layout_width="133dp"
         android:layout_height="42dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/listInventory" />
 
     <Button
         android:id="@+id/btnAddToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Add to Cart"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDrinks" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:text="Drinks:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextDrinks"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDrinks"
+        app:layout_constraintTop_toTopOf="@+id/editTextDrinks" />
 
     <EditText
         android:id="@+id/editTextDrinks"
         android:layout_width="133dp"
         android:layout_height="42dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextSnacks"
+        app:layout_constraintStart_toStartOf="@+id/editTextSnacks"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSnacks" />
 
     <EditText
         android:id="@+id/editTextSnacks"
         android:layout_width="133dp"
         android:layout_height="42dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextSandwiches"
+        app:layout_constraintStart_toStartOf="@+id/editTextSandwiches"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSandwiches" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="Snacks:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.199"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.667"
-        tools:ignore="MissingConstraints" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSnacks"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSnacks"
+        app:layout_constraintTop_toTopOf="@+id/editTextSnacks" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="Sandwiches:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601"
-        tools:ignore="MissingConstraints" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSandwiches"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSandwiches"
+        app:layout_constraintTop_toTopOf="@+id/editTextSandwiches" />
 
     <ListView
         android:id="@+id/listInventory"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextSandwiches"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </ListView>
 
 

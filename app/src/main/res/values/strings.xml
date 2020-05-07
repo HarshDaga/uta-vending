@@ -35,6 +35,7 @@
     <string name="delete_user">Delete User</string>
     <string name="view_schedule">View Schedule</string>
     <string name="process_order">Process Order</string>
+    <string name="serve">Serve</string>
 
     <string-array name="VehicleType">
         <item>Food Truck</item>

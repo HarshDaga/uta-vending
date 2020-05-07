@@ -37,7 +37,7 @@ public class EditCart extends AppCompatActivity
 		setContentView(R.layout.activity_edit_cart);
 		order = ViewInventory.cartOrder;
 		lstOrders = findViewById(R.id.listOrderItems1);
-		cost = findViewById(R.id.textViewCost1);
+		cost = findViewById(R.id.textViewCost);
 		appDb = AppDatabase.getInstance(this);
 
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
@@ -70,7 +70,8 @@ public class EditCart extends AppCompatActivity
 	private void onInsertOrder(long orderId)
 	{
 		this.orderId = orderId;
-		appDb.vehicleDao().getInventory(order.vehicleId)
+		appDb.vehicleDao()
+			.getInventory(order.vehicleId)
 			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(vehicleInventory ->

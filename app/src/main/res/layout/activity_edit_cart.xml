@@ -6,148 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".EditCart">
 
-
     <ListView
         android:id="@+id/listOrderItems1"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:layout_marginBottom="203dp"
+        android:layout_marginTop="8dp"
         android:scrollbars="horizontal|vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCheckout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
         android:text="Checkout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/textViewCost"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textViewCost1"
+        android:id="@+id/textViewCost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="499dp"
-        android:layout_marginBottom="76dp"
-        android:gravity="center_horizontal"
+        android:layout_height="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
         android:text="Total Cost: $"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/editText19"
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/editText15"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintEnd_toEndOf="@+id/editText7"
+        app:layout_constraintStart_toStartOf="@+id/editText7"
+        app:layout_constraintTop_toBottomOf="@+id/editText16" />
 
     <TextView
         android:id="@+id/textView46"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="CVV:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editText19"
+        app:layout_constraintEnd_toStartOf="@+id/editText19"
+        app:layout_constraintTop_toTopOf="@+id/editText19" />
 
     <TextView
         android:id="@+id/textView43"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="Name On Card:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editText7"
+        app:layout_constraintEnd_toStartOf="@+id/editText7"
+        app:layout_constraintTop_toTopOf="@+id/editText7" />
 
     <EditText
         android:id="@+id/editText19"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintEnd_toEndOf="@+id/editText7"
+        app:layout_constraintStart_toStartOf="@+id/editText7"
+        app:layout_constraintTop_toBottomOf="@+id/editText15" />
 
     <TextView
         android:id="@+id/textView44"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center_vertical|end"
         android:text="Card Number:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintBottom_toBottomOf="@+id/editText16"
+        app:layout_constraintEnd_toStartOf="@+id/editText16"
+        app:layout_constraintTop_toTopOf="@+id/editText16" />
 
     <TextView
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="Expires On:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editText15"
+        app:layout_constraintEnd_toStartOf="@+id/editText15"
+        app:layout_constraintTop_toTopOf="@+id/editText15" />
 
     <EditText
         android:id="@+id/editText7"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintTop_toBottomOf="@+id/listOrderItems1" />
 
     <EditText
         android:id="@+id/editText16"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintEnd_toEndOf="@+id/editText7"
+        app:layout_constraintStart_toStartOf="@+id/editText7"
+        app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ public class InvoiceScreen extends AppCompatActivity
 	AppDatabase appDb;
 	TextView cost;
 
-	EditText orderID, date, location;
+	TextView orderID, date, location;
 
 	private long getOrderIdFromIntent()
 	{
@@ -46,13 +46,13 @@ public class InvoiceScreen extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		orderId = getOrderIdFromIntent();
 		setContentView(R.layout.activity_invoice_screen);
-		cost = findViewById(R.id.textViewCost2);
-		lstOrders = findViewById(R.id.listOrderItems2);
+		cost = findViewById(R.id.textViewCostInvoice);
+		lstOrders = findViewById(R.id.listOrderItemsInvoice);
 		appDb = AppDatabase.getInstance(this);
 
-		orderID = findViewById(R.id.editTextOderID2);
-		date = findViewById(R.id.editTextDate);
-		location = findViewById(R.id.editTextLocation);
+		orderID = findViewById(R.id.textViewInvoiceOderId);
+		date = findViewById(R.id.textViewInvoiceDate);
+		location = findViewById(R.id.textViewInvoiceLocation);
 
 
 		appDb.orderDao()
@@ -64,27 +64,27 @@ public class InvoiceScreen extends AppCompatActivity
 
 	@RequiresApi(api = Build.VERSION_CODES.N)
 	@SuppressLint({"DefaultLocale", "SetTextI18n"})
-	private void onFetchOrder(Order order1)
+	private void onFetchOrder(Order order)
 	{
-		order = order1;
+		this.order = order;
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
 			InvoiceScreen.this,
 			android.R.layout.simple_list_item_1,
-			Arrays.stream(order1.items)
+			Arrays.stream(order.items)
 				.map(item -> ("Item: " + item.item.type + ", Cost: $" + String.format("%.2f", item.getTotalCost().doubleValue()) + ", Quantity: " + item.quantity))
 				.collect(Collectors.toList())
 		);
 		lstOrders.setAdapter(arrayAdapter);
 		lstOrders.invalidate();
-		cost.setText(String.format("Total Cost: $ %.2f", order1.cost.doubleValue()));
+		cost.setText(String.format("Total Cost: $ %.2f", order.cost.doubleValue()));
 
-		orderID.setText(order.id + "");
+		orderID.setText(this.order.id + "");
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 		{
-			date.setText(order.date.format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
+			date.setText(this.order.date.format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
 		}
 
-		location.setText(order.location);
+		location.setText(this.order.location);
 	}
 }

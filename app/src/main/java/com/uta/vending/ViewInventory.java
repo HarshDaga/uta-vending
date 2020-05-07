@@ -142,6 +142,12 @@ public class ViewInventory extends AppCompatActivity
 			Toast.makeText(ViewInventory.this, "Enter correct quantities and try again.", Toast.LENGTH_SHORT).show();
 		}
 
+		if ((sandwiches | snacks | drinks) == 0)
+		{
+			Toast.makeText(this, "No items selected", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
 		Order order = new Order(
 			userId,
 			currentVehicle.scheduleToday.operatorId,
