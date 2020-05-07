@@ -15,9 +15,9 @@
         android:gravity="center_vertical|end"
         android:text="Total Revenue:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText25"
-        app:layout_constraintEnd_toStartOf="@+id/editText25"
-        app:layout_constraintTop_toTopOf="@+id/editText25"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewRevenue"
+        app:layout_constraintEnd_toStartOf="@+id/textViewRevenue"
+        app:layout_constraintTop_toTopOf="@+id/textViewRevenue"
         app:layout_constraintVertical_bias="0.217" />
 
     <TextView
@@ -29,33 +29,37 @@
         android:gravity="center_vertical|end"
         android:text="Date:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText11"
-        app:layout_constraintEnd_toStartOf="@+id/editText11"
-        app:layout_constraintTop_toTopOf="@+id/editText11"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextRevenueDate"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRevenueDate"
+        app:layout_constraintTop_toTopOf="@+id/editTextRevenueDate"
         app:layout_constraintVertical_bias="0.092" />
 
     <EditText
-        android:id="@+id/editText11"
+        android:id="@+id/editTextRevenueDate"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:focusable="false"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.651"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        tools:ignore="KeyboardInaccessibleWidget" />
 
     <TextView
-        android:id="@+id/editText25"
+        android:id="@+id/textViewRevenue"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editText11"
-        app:layout_constraintStart_toStartOf="@+id/editText11"
-        app:layout_constraintTop_toBottomOf="@+id/editText11" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextRevenueDate"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="@+id/editTextRevenueDate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.212" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

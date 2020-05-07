@@ -3,7 +3,6 @@ package com.uta.vending;
 import android.annotation.*;
 import android.content.*;
 import android.os.*;
-import android.text.*;
 import android.view.*;
 import android.widget.*;
 
@@ -102,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity
             makeShortToast("Enter a valid Email ID.");
             return true;
         }
-        if (user.phone.length() != 10 || !TextUtils.isDigitsOnly(user.phone))
+        if (!isValidPhone(user.phone))
         {
             makeShortToast("Enter a valid Phone.");
             return true;
@@ -134,6 +133,14 @@ public class RegisterActivity extends AppCompatActivity
         return Pattern
             .compile("^[\\w.]+@mavs\\.uta\\.edu")
             .matcher(email)
+            .matches();
+    }
+
+    private boolean isValidPhone(String phone)
+    {
+        return Pattern
+            .compile("\\d{3}-?\\d{3}-?\\d{4}")
+            .matcher(phone)
             .matches();
     }
 }

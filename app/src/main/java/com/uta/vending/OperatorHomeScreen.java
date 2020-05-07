@@ -5,6 +5,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
+import androidx.annotation.*;
 import androidx.appcompat.app.*;
 
 public class OperatorHomeScreen extends AppCompatActivity
@@ -57,12 +58,13 @@ public class OperatorHomeScreen extends AppCompatActivity
 		startActivity(intent);
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	private void onClickLogout(View v)
 	{
 		Toast.makeText(OperatorHomeScreen.this, "LOGOUT Successful!", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(OperatorHomeScreen.this, MainActivity.class);
 		startActivity(intent);
-		finish();
+		finishAffinity();
 	}
 
 	private void onClickViewProfile(View v)

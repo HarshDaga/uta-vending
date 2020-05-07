@@ -12,6 +12,7 @@ import androidx.appcompat.app.*;
 
 import com.uta.vending.data.*;
 import com.uta.vending.data.entities.*;
+import com.uta.vending.utilities.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -29,20 +30,29 @@ public class SearchVehicle extends AppCompatActivity
 
 	String filterType;
 	String filterLocation;
+	TimeChooser fromTime, toTime;
 	long userId;
 
-	@RequiresApi(api = Build.VERSION_CODES.N)
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	private void onVehicleListGet(List<Vehicle> vehicles)
 	{
+		vehicles = vehicles.stream()
+			.filter(vehicle -> vehicle.scheduleToday.location != null)
+			.collect(Collectors.toList());
+
 		if (!"All".equals(filterType))
 			vehicles = vehicles.stream()
 				.filter(vehicle -> vehicle.type.equalsIgnoreCase(filterType))
 				.collect(Collectors.toList());
 
-		if (!"None".equals(filterLocation))
+		if (!"All".equals(filterLocation))
 			vehicles = vehicles.stream()
-				.filter(vehicle -> vehicle.scheduleToday.location != null && vehicle.scheduleToday.location.equalsIgnoreCase(filterLocation))
+				.filter(vehicle -> vehicle.scheduleToday.location.equalsIgnoreCase(filterLocation))
 				.collect(Collectors.toList());
+
+		vehicles = vehicles.stream()
+			.filter(this::checkVehicleTime)
+			.collect(Collectors.toList());
 
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
 			this,
@@ -72,6 +82,7 @@ public class SearchVehicle extends AppCompatActivity
 		return 0;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -79,14 +90,17 @@ public class SearchVehicle extends AppCompatActivity
 		setContentView(R.layout.activity_search_vehicle);
 		appDb = AppDatabase.getInstance(this);
 
-		hoursTo = findViewById(R.id.ediTextTimeTo);
-		hoursFrom = findViewById(R.id.ediTextTimeFrom);
+		hoursTo = findViewById(R.id.editTextTo);
+		hoursFrom = findViewById(R.id.editTextFrom);
 		vehicleList = findViewById(R.id.listVehicles);
 		btnSearch = findViewById(R.id.btnSearchVehicle);
 
 		userId = getIdFromIntent();
 		btnSearch.setOnClickListener(this::onClickSearch);
 		vehicleList.setOnItemClickListener(this::onClickVehicle);
+
+		fromTime = new TimeChooser(hoursFrom, this);
+		toTime = new TimeChooser(hoursTo, this);
 
 		Spinner vehTypeSpinner = findViewById(R.id.SpinnerVehType);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -151,5 +165,21 @@ public class SearchVehicle extends AppCompatActivity
 			.subscribeOn(Schedulers.computation())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(SearchVehicle.this::onVehicleListGet, SearchVehicle.this::onLookupError);
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private boolean checkVehicleTime(Vehicle vehicle)
+	{
+		if (fromTime.isTimeSet() && toTime.isTimeSet())
+			return vehicle.scheduleToday.containsTime(fromTime.getTime()) ||
+				vehicle.scheduleToday.containsTime(toTime.getTime());
+
+		if (fromTime.isTimeSet())
+			return vehicle.scheduleToday.containsTime(fromTime.getTime());
+
+		if (toTime.isTimeSet())
+			return vehicle.scheduleToday.containsTime(toTime.getTime());
+
+		return true;
 	}
 }

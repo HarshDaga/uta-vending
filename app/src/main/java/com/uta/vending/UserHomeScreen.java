@@ -5,6 +5,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
+import androidx.annotation.*;
 import androidx.appcompat.app.*;
 
 public class UserHomeScreen extends AppCompatActivity
@@ -63,12 +64,13 @@ public class UserHomeScreen extends AppCompatActivity
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void onClickLogout(View v)
     {
         Toast.makeText(UserHomeScreen.this, "LOGOUT Successful!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(UserHomeScreen.this, MainActivity.class);
         startActivity(intent);
-        finish();
+        finishAffinity();
     }
 
     private void onClickViewOrder(View v)

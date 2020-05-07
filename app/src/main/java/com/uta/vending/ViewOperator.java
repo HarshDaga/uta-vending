@@ -6,17 +6,25 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 
+import androidx.annotation.*;
 import androidx.appcompat.app.*;
 
 import com.uta.vending.data.*;
 import com.uta.vending.data.entities.*;
 
 import java.util.*;
+import java.util.stream.*;
+
+import io.reactivex.android.schedulers.*;
+import io.reactivex.schedulers.*;
 
 public class ViewOperator extends AppCompatActivity
 {
-	Button btnViewOpDetails;
+	ListView listOperators;
 	AppDatabase appDb;
+
+	List<User> operators;
+	User selectedOperator;
 
 	@SuppressLint("CheckResult")
 	@Override
@@ -26,22 +34,38 @@ public class ViewOperator extends AppCompatActivity
 		setContentView(R.layout.activity_view_operator);
 		appDb = AppDatabase.getInstance(this);
 
-		btnViewOpDetails = findViewById(R.id.BtnViewOperatorDetails);
-		btnViewOpDetails.setOnClickListener(this::onClickDetails);
+		listOperators = findViewById(R.id.listOperators);
+		listOperators.setOnItemClickListener(this::onOperatorSelected);
 
 		appDb.userDao()
 			.getAll(Role.OPERATOR)
+			.subscribeOn(Schedulers.computation())
+			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe(this::onFetchOperators);
 	}
 
-	private void onFetchOperators(List<User> users)
+	private void onOperatorSelected(AdapterView<?> adapterView, View view, int position, long id)
 	{
-		// TODO Populate UI
+		selectedOperator = operators.get(position);
+
+		Intent intent = new Intent(ViewOperator.this, ViewOperatorDetails.class);
+		intent.putExtra("OP_ID", selectedOperator.id);
+		startActivity(intent);
 	}
 
-	private void onClickDetails(View v)
+	@RequiresApi(api = Build.VERSION_CODES.N)
+	private void onFetchOperators(List<User> users)
 	{
-		Intent intent = new Intent(ViewOperator.this, ViewOperatorDetails.class);
-		startActivity(intent);
+		operators = users;
+
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+			this,
+			android.R.layout.simple_list_item_1,
+			operators.stream()
+				.map(o -> o.id + " Name: " + o.firstName + " " + o.lastName)
+				.collect(Collectors.toList())
+		);
+		listOperators.setAdapter(arrayAdapter);
+		listOperators.invalidate();
 	}
 }

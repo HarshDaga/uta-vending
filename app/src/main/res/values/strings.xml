@@ -38,12 +38,13 @@
     <string name="serve">Serve</string>
 
     <string-array name="VehicleType">
+        <item>All</item>
         <item>Food Truck</item>
         <item>Cart</item>
     </string-array>
 
     <string-array name="LocationSp">
-        <item>None</item>
+        <item>All</item>
         <item>Cooper &amp; UTA Blvd</item>
         <item>W Nedderman &amp; Greek Row</item>
         <item>S Davis &amp; W Mitchell</item>
