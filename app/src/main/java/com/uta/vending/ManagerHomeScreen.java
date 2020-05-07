@@ -14,12 +14,24 @@ public class ManagerHomeScreen extends AppCompatActivity
 	Button btnViewOperator;
 	Button btnViewVehicle;
 	Button btnViewRevenue;
+	long id;
+
+	private long getIdFromIntent()
+	{
+		if (this.getIntent() != null)
+		{
+			return this.getIntent().getLongExtra("ID", 0);
+		}
+		return 0;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_manager_homescreen);
+
+		id = getIdFromIntent();
 
 		btnViewVehicle = findViewById(R.id.ViewVehicle);
 		btnViewVehicle.setOnClickListener(this::onClickViewVehicle);
@@ -58,7 +70,7 @@ public class ManagerHomeScreen extends AppCompatActivity
 	private void onClickViewProfile(View v)
 	{
 		Intent intent = new Intent(ManagerHomeScreen.this, ViewProfile.class);
-		//TODO: intent.putExtra("ID", id);
+		intent.putExtra("ID", id);
 		startActivity(intent);
 	}
 

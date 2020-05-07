@@ -17,30 +17,17 @@
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/btnCheckout"
+        android:id="@+id/btnServe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
 
         android:layout_marginLeft="157dp"
         android:layout_marginBottom="57dp"
-        android:text="Checkout"
+        android:text="Serve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"></Button>
-
-    <TextView
-        android:id="@+id/textViewCost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="136dp"
-        android:gravity="center_horizontal"
-        android:text="Total Cost: $"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="148dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"

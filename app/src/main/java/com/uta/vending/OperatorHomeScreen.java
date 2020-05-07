@@ -13,12 +13,24 @@ public class OperatorHomeScreen extends AppCompatActivity
 	Button btnViewProfile;
 	Button btnViewSchedule;
 	Button btnProcessOrder;
+	long id;
+
+	private long getIdFromIntent()
+	{
+		if (this.getIntent() != null)
+		{
+			return this.getIntent().getLongExtra("ID", 0);
+		}
+		return 0;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_operator_homescreen);
+
+		id = getIdFromIntent();
 
 		btnProcessOrder = findViewById(R.id.ProcessOrder);
 		btnProcessOrder.setOnClickListener(this::onClickProcessOrder);
@@ -56,7 +68,7 @@ public class OperatorHomeScreen extends AppCompatActivity
 	private void onClickViewProfile(View v)
 	{
 		Intent intent = new Intent(OperatorHomeScreen.this, ViewProfile.class);
-		//TODO: intent.putExtra("ID", id);
+		intent.putExtra("ID", id);
 		startActivity(intent);
 	}
 }

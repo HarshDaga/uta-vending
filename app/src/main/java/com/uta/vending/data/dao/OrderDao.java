@@ -12,7 +12,10 @@ import io.reactivex.*;
 public interface OrderDao
 {
 	@Insert
-	Completable insert(Order... orders);
+	Single<Long> insert(Order order);
+
+	@Insert
+	Single<long[]> insert(Order... orders);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
 	Completable update(Order... orders);
@@ -23,10 +26,10 @@ public interface OrderDao
 	@Query("SELECT * FROM orders WHERE user_id = :userId")
 	Flowable<List<Order>> getAll(long userId);
 
-	@Query("SELECT COUNT(*) FROM orders WHERE operator_id = :operatorId")
+	@Query("SELECT COUNT(*) FROM orders WHERE operator_id = :operatorId LIMIT 1")
 	Single<Integer> getTxCount(long operatorId);
 
-	@Query("SELECT * FROM orders WHERE id = :orderId")
+	@Query("SELECT * FROM orders WHERE id = :orderId LIMIT 1")
 	Single<Order> findOrder(long orderId);
 }
 

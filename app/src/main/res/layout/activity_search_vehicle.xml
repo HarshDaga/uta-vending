@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:windowSoftInputMode="stateVisible|adjustPan"
     tools:context=".SearchVehicle">
 
     <EditText
         android:id="@+id/editTextFrom"
         android:layout_width="95dp"
         android:layout_height="39dp"
+        android:layout_marginTop="10dp"
         android:hint="To HH:MM"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerLocation"
+        app:layout_constraintVertical_bias="0.191"
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/vtypespinner"
+        android:id="@+id/SpinnerVehType"
         android:layout_width="198dp"
         android:layout_height="26dp"
         android:spinnerMode="dropdown"
@@ -34,233 +35,89 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="92dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="Time Slot:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTo"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTo" />
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="92dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="Location:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/SpinnerLocation"
+        app:layout_constraintEnd_toStartOf="@+id/SpinnerLocation" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSearchVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="SEARCH"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319"
-        tools:ignore="MissingConstraints" />
-
-    <!--    <TableLayout-->
-    <!--        android:id="@+id/tableLayout2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="170dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/button"-->
-    <!--        app:layout_constraintVertical_bias="0.238"-->
-    <!--        tools:ignore="MissingConstraints"-->
-    <!--        tools:layout_editor_absoluteX="0dp">-->
-
-
-    <!--        <TableRow>-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Vehicle Name"-->
-    <!--                android:textStyle="bold" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Type"-->
-    <!--                android:textStyle="bold" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="10"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Location"-->
-    <!--                android:textStyle="bold" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Time Slot"-->
-    <!--                android:textStyle="bold" />-->
-    <!--        </TableRow>-->
-
-    <!--        <TableRow>-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Truck1" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Food Truck" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="10"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Cooper &amp; UTA Blvd" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="12:00 - 14:00" />-->
-    <!--        </TableRow>-->
-
-    <!--        <TableRow>-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Truck2" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Food truck" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="10"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="S Oak &amp; UTA Blvd" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="14:00 - 16:00" />-->
-    <!--        </TableRow>-->
-
-    <!--        <TableRow>-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Truck3" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Food Truck" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="10"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="Spaniolo &amp; W 1st" />-->
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:gravity="center"-->
-    <!--                android:text="16:00 - 17:00" />-->
-    <!--        </TableRow>-->
-
-
-    <!--    </TableLayout>-->
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextTo" />
 
     <ListView
         android:id="@+id/listVehicles"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"></ListView>
-
-    <Spinner
-        android:id="@+id/LocationSpinner"
-        android:layout_width="198dp"
-        android:layout_height="26dp"
-        android:spinnerMode="dropdown"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchVehicle"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/SpinnerLocation"
+        android:layout_width="198dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerVehType" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="92dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="Vehicle Type:"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073" />
+        android:gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="@+id/SpinnerVehType"
+        app:layout_constraintEnd_toStartOf="@+id/SpinnerVehType" />
 
     <EditText
         android:id="@+id/editTextTo"
         android:layout_width="95dp"
         android:layout_height="39dp"
+        android:layout_marginTop="10dp"
         android:hint="From HH:MM"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerLocation"
         tools:ignore="MissingConstraints" />
 
 

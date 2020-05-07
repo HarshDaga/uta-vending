@@ -17,9 +17,6 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 @Database
         (
                 entities =
@@ -82,7 +79,7 @@ public abstract class AppDatabase extends RoomDatabase {
         populateVehicles();
         populateInventory();
 
-//		populateOrders();
+        populateOrders();
     }
 
     private void populateUsers() {
@@ -95,9 +92,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
         for (Role role : Role.values())
             for (int i = 0; i < 5; i++) {
-                user.firstName = role.toString() + (i + 1);
+                user.firstName = role.toString().substring(0, 1) + (i + 1);
                 user.lastName = "Empty";
-                user.email = user.firstName + "@email.com";
+                user.email = user.firstName + "@e.c";
                 user.role = role;
                 user.password = User.hash("123");
 
@@ -138,7 +135,7 @@ public abstract class AppDatabase extends RoomDatabase {
         vehicles[1].scheduleToday.start = today.withHour(14);
         vehicles[1].scheduleToday.end = today.withHour(17);
 
-        User operator = userDao().getUser("OPERATOR1@email.com", Role.OPERATOR).blockingGet();
+        User operator = userDao().getUser("O1@e.c", Role.OPERATOR).blockingGet();
         vehicles[0].scheduleToday.operatorId = operator.id;
         vehicles[1].scheduleToday.operatorId = operator.id;
 
@@ -166,6 +163,7 @@ public abstract class AppDatabase extends RoomDatabase {
         order.addItem(new OrderItem(foodItems.get(0), 2));
         order.addItem(new OrderItem(foodItems.get(1), 1));
 
-        orderDao().insert(order).blockingAwait();
+        long id = orderDao().insert(order).blockingGet();
+        order = orderDao().findOrder(1).blockingGet();
     }
 }
