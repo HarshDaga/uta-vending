@@ -14,30 +14,32 @@ import java.util.stream.*;
 
 @SuppressWarnings("WeakerAccess")
 @Entity(
-		tableName = "orders",
-		foreignKeys =
-				{
-						@ForeignKey(entity = User.class,
-								parentColumns = "id",
-								childColumns = "user_id",
-								onDelete = ForeignKey.CASCADE),
-						@ForeignKey(entity = User.class,
-								parentColumns = "id",
-								childColumns = "operator_id",
-								onDelete = ForeignKey.CASCADE),
-						@ForeignKey(entity = Vehicle.class,
-								parentColumns = "id",
-								childColumns = "vehicle_id",
-								onDelete = ForeignKey.CASCADE)
-				},
-		indices = {
-				@Index(name = "order_user_id_index", value = {"user_id"}),
-				@Index(name = "order_operator_id_index", value = {"operator_id"}),
-				@Index(name = "order_vehicle_id_index", value = {"vehicle_id"})
-		}
+	tableName = "orders",
+	foreignKeys =
+		{
+			@ForeignKey(entity = User.class,
+				parentColumns = "id",
+				childColumns = "user_id",
+				onDelete = ForeignKey.CASCADE),
+			@ForeignKey(entity = User.class,
+				parentColumns = "id",
+				childColumns = "operator_id",
+				onDelete = ForeignKey.CASCADE),
+			@ForeignKey(entity = Vehicle.class,
+				parentColumns = "id",
+				childColumns = "vehicle_id",
+				onDelete = ForeignKey.CASCADE)
+		},
+	indices = {
+		@Index(name = "order_user_id_index", value = {"user_id"}),
+		@Index(name = "order_operator_id_index", value = {"operator_id"}),
+		@Index(name = "order_vehicle_id_index", value = {"vehicle_id"})
+	}
 )
 public class Order
 {
+	private static final double TAX = 0.0825;
+
 	@PrimaryKey(autoGenerate = true)
 	public long id;
 
@@ -110,6 +112,7 @@ public class Order
 		cost = BigDecimal.ZERO;
 		for (OrderItem item : items)
 			cost = cost.add(item.getTotalCost());
+		cost = cost.multiply(new BigDecimal(1 + TAX));
 		return cost;
 	}
 }

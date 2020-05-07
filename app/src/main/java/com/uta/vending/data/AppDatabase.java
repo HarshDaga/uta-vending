@@ -106,9 +106,9 @@ public abstract class AppDatabase extends RoomDatabase {
         foodDao()
                 .insert
                         (
-                                new FoodItem("Sandwich", 5),
-                                new FoodItem("Snacks", 10),
-                                new FoodItem("Drink", 5)
+                            new FoodItem("Sandwich", 5.75),
+                            new FoodItem("Snacks", 1.25),
+                            new FoodItem("Drink", 1.5)
                         )
                 .blockingAwait();
     }

@@ -28,7 +28,7 @@ public class ViewInventory extends AppCompatActivity
 	public static List<InventoryItem> inventoryItemList;
 	AppDatabase appDb;
 	ListView listInventory;
-	Button addToCart;
+	Button btnCheckout;
 	EditText editTextDrinks, editTextSnacks, editTextSandwiches;
 
 	private void getIdFromIntent()
@@ -51,14 +51,15 @@ public class ViewInventory extends AppCompatActivity
 		editTextSnacks = findViewById(R.id.editTextSnacks);
 		editTextDrinks = findViewById(R.id.editTextDrinks);
 		editTextSandwiches = findViewById(R.id.editTextSandwiches);
-		addToCart = findViewById(R.id.btnAddToCart);
+		btnCheckout = findViewById(R.id.btnCheckout);
 		listInventory = findViewById(R.id.listInventory);
 
-		getIdFromIntent();
-		if (ViewInventory.cartOrder != null)
+		if (ViewInventory.cartOrder == null)
+			getIdFromIntent();
+		else
 			updateUiQuantities();
 
-		addToCart.setOnClickListener(this::onClickAddToCart);
+		btnCheckout.setOnClickListener(this::onClickCheckout);
 
 		if (vehicleId > 0)
 		{
@@ -124,7 +125,7 @@ public class ViewInventory extends AppCompatActivity
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
-	private void onClickAddToCart(View v)
+	private void onClickCheckout(View v)
 	{
 		int sandwiches = 0, snacks = 0, drinks = 0;
 
@@ -188,7 +189,7 @@ public class ViewInventory extends AppCompatActivity
 		{
 			order.isServed = false;
 			cartOrder = order;
-			Intent intent = new Intent(ViewInventory.this, EditCart.class);
+			Intent intent = new Intent(ViewInventory.this, CheckoutCart.class);
 			intent.putExtra("UserID", order.userId);
 			startActivity(intent);
 		}

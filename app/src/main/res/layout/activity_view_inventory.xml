@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="Autofill,HardcodedText,LabelFor"
     tools:context=".ViewInventory">
 
     <EditText
@@ -19,11 +20,11 @@
         app:layout_constraintTop_toBottomOf="@+id/listInventory" />
 
     <Button
-        android:id="@+id/btnAddToCart"
+        android:id="@+id/btnCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Add to Cart"
+        android:text="Checkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

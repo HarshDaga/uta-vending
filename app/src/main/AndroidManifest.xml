@@ -13,7 +13,7 @@
         <activity android:name=".OrderDetails" />
         <activity android:name=".OrdersList" />
         <activity android:name=".InvoiceScreen" />
-        <activity android:name=".EditCart" />
+        <activity android:name=".CheckoutCart" />
         <activity android:name=".DeleteUser" />
         <activity android:name=".ViewOperatorDetails" />
         <activity android:name=".ViewOperator" />
