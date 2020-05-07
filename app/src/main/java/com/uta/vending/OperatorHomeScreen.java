@@ -55,6 +55,7 @@ public class OperatorHomeScreen extends AppCompatActivity
 	private void onClickViewSchedule(View v)
 	{
 		Intent intent = new Intent(OperatorHomeScreen.this, ViewSchedule.class);
+		intent.putExtra("ID", id);
 		startActivity(intent);
 	}
 
